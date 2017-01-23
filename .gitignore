@@ -21,6 +21,8 @@
 bld/
 [Bb]in/
 [Oo]bj/
+[Dd]ebug.win32/
+[Rr]elease.win32/
 
 # Visual Studio 2015 cache/options directory
 .vs/
@@ -240,3 +242,14 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+
+#ignore cocos
+
+cocos2d/
+proj.android/
+proj.android-studio/
+proj.ios_mac/
+proj.linux/
+proj.tizen/
+proj.win8.1-universal/
+proj.win10/
