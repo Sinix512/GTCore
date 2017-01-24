@@ -11,6 +11,10 @@ public:
 
 	virtual bool init();
 
+private:
+
+	void initSprites();
+
 	// implement the "static create()" method manually
 	CREATE_FUNC(GeneralBaseScene);
 };
