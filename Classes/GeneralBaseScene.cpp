@@ -1,5 +1,4 @@
 #include "GeneralBaseScene.h"
-#include "Ghost.h"
 
 USING_NS_CC;
 
@@ -11,7 +10,6 @@ cocos2d::Scene * GeneralBaseScene::createScene()
 	//Create base layer;
 	auto layer = GeneralBaseScene::create();
 	//TODO: Create other fixed layers and add them into this scene;
-	auto ghost = Ghost::create();
 	scene->addChild(layer);
 	return scene;
 }
@@ -19,6 +17,10 @@ cocos2d::Scene * GeneralBaseScene::createScene()
 bool GeneralBaseScene::init()
 {
 	initSprites();
+	initUI();
+	initBGListeners();
+	initUIListeners();
+	initGhostListeners();
 	return true;
 }
 
@@ -28,6 +30,7 @@ void GeneralBaseScene::initSprites()
 	auto visibleSize = director->getVisibleSize();
 
 	auto bg = Sprite::create("act1/background.png");
+	m_pBackGround = bg;
 	auto bgSize = bg->getContentSize();
 	auto bgPos = Vec2();
 	bg->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
@@ -37,7 +40,30 @@ void GeneralBaseScene::initSprites()
 	bg->setPosition(bgPos);
 	addChild(bg);
 	//use particle system to show the ghost
-	CCParticleSystem* ghost = CCParticleSystemQuad::create("common/ghost.plist");
-	ghost->setPosition(200, 200);
-	bg->addChild(ghost,1); 
+	auto ghost = ParticleSystemQuad::create("common/ghost.plist");
+	ghost->setVisible(true);
+	bg->addChild(ghost,1);
+}
+
+void GeneralBaseScene::initUI()
+{
+}
+
+void GeneralBaseScene::initBGListeners()
+{
+	auto listener = EventListenerTouchOneByOne::create();
+	listener->setSwallowTouches(true);
+
+	listener->onTouchBegan = [this](Touch *t, Event *e)
+	{
+		return false;
+	};
+}
+
+void GeneralBaseScene::initUIListeners()
+{
+}
+
+void GeneralBaseScene::initGhostListeners()
+{
 }

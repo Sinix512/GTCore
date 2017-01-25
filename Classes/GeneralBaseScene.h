@@ -13,7 +13,19 @@ public:
 
 private:
 
+	Sprite *m_pBackGround;
+
+private:
+
 	void initSprites();
+
+	void initUI();
+
+	void initBGListeners();
+
+	void initUIListeners();
+
+	void initGhostListeners();
 
 	// implement the "static create()" method manually
 	CREATE_FUNC(GeneralBaseScene);
