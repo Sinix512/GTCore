@@ -13,7 +13,7 @@ public:
 
 private:
 
-	Sprite *m_pBackGround;
+	cocos2d::Sprite *m_pBackGround;
 
 private:
 
