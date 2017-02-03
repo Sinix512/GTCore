@@ -15,6 +15,8 @@ private:
 
 	cocos2d::Sprite *m_pBackGround;
 
+	cocos2d::Vec2 m_v2Start;
+
 private:
 
 	void initSprites();

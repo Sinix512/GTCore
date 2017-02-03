@@ -56,8 +56,24 @@ void GeneralBaseScene::initBGListeners()
 
 	listener->onTouchBegan = [this](Touch *t, Event *e)
 	{
-		return false;
+		m_v2Start = t->getLocation();
+		return true;
 	};
+
+	listener->onTouchMoved = [this](Touch *t, Event *e)
+	{
+		Vec2 Loc = t->getLocation();
+		Vec2 bgPos = m_pBackGround->getPosition();
+		m_pBackGround->setPosition(bgPos - (Loc - m_v2Start));
+		m_v2Start = Loc;
+	};
+
+	listener->onTouchEnded = [this](Touch *t, Event *e)
+	{
+		m_v2Start = Vec2::ZERO;
+	};
+
+	Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, m_pBackGround);
 }
 
 void GeneralBaseScene::initUIListeners()
